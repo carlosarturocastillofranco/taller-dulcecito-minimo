@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>Taller El Dulcecito Castillo - Versión mínima</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <div class="app-container">
+    <header class="app-header">
+      <div>
+        <h1>Taller Automotriz</h1>
+        <h2>"El Dulcecito Castillo"</h2>
+      </div>
+      <div class="header-badge">
+        <span>Versión mínima</span>
+        <small>Inventario · Entradas · Salidas</small>
+      </div>
+    </header>
+
+    <nav class="app-nav">
+      <button class="nav-btn active" data-view="dashboard">Inicio</button>
+      <button class="nav-btn" data-view="inventario">Inventario</button>
+      <button class="nav-btn" data-view="entradas">Entradas</button>
+      <button class="nav-btn" data-view="salidas">Salidas</button>
+    </nav>
+
+    <main class="app-main">
+      <!-- DASHBOARD -->
+      <section id="view-dashboard" class="view active">
+        <h3>Panel principal</h3>
+        <div class="cards">
+          <div class="card">
+            <h4>Repuestos en inventario</h4>
+            <p id="dash-total-repuestos">0</p>
+          </div>
+          <div class="card">
+            <h4>Unidades en stock</h4>
+            <p id="dash-total-unidades">0</p>
+          </div>
+          <div class="card warning">
+            <h4>Stock crítico</h4>
+            <p id="dash-stock-critico">0</p>
+          </div>
+        </div>
+        <div class="panel-info">
+          <p>
+            Esta es la versión mínima de la aplicación web para el Taller Automotriz
+            <strong>"El Dulcecito Castillo"</strong>. Registra tus repuestos, entradas y salidas
+            y controla tu inventario en tiempo real.
+          </p>
+        </div>
+      </section>
+
+      <!-- INVENTARIO -->
+      <section id="view-inventario" class="view">
+        <div class="view-header">
+          <h3>Inventario de repuestos</h3>
+          <small>Registra o edita los repuestos del taller</small>
+        </div>
+
+        <form id="form-repuesto" class="form-grid">
+          <input type="text" id="rep-codigo" placeholder="Código" required>
+          <input type="text" id="rep-descripcion" placeholder="Descripción" required>
+          <input type="text" id="rep-aplicacion" placeholder="Aplicación / Vehículo">
+          <input type="text" id="rep-categoria" placeholder="Categoría (frenos, motor…)">
+          <input type="number" id="rep-precio-compra" placeholder="Precio compra" step="0.01">
+          <input type="number" id="rep-precio-venta" placeholder="Precio venta" step="0.01">
+          <input type="number" id="rep-stock-min" placeholder="Stock mínimo" value="1" min="0">
+          <button type="submit" class="btn-primary">Guardar repuesto</button>
+        </form>
+
+        <div class="table-wrapper">
+          <table id="tabla-inventario">
+            <thead>
+              <tr>
+                <th>Código</th>
+                <th>Descripción</th>
+                <th>Stock</th>
+                <th>Stock mín</th>
+                <th>Estado</th>
+              </tr>
+            </thead>
+            <tbody></tbody>
+          </table>
+        </div>
+      </section>
+
+      <!-- ENTRADAS -->
+      <section id="view-entradas" class="view">
+        <div class="view-header">
+          <h3>Entradas de repuestos</h3>
+          <small>Registra compras o ingresos a bodega</small>
+        </div>
+
+        <form id="form-entrada" class="form-grid">
+          <input type="date" id="ent-fecha" required>
+          <input type="text" id="ent-codigo" placeholder="Código repuesto" required>
+          <input type="number" id="ent-cantidad" placeholder="Cantidad" required min="1">
+          <input type="text" id="ent-proveedor" placeholder="Proveedor">
+          <button type="submit" class="btn-primary">Registrar entrada</button>
+        </form>
+
+        <div class="table-wrapper">
+          <table id="tabla-entradas">
+            <thead>
+              <tr>
+                <th>Fecha</th>
+                <th>Código</th>
+                <th>Cantidad</th>
+                <th>Proveedor</th>
+              </tr>
+            </thead>
+            <tbody></tbody>
+          </table>
+        </div>
+      </section>
+
+      <!-- SALIDAS -->
+      <section id="view-salidas" class="view">
+        <div class="view-header">
+          <h3>Salidas de repuestos</h3>
+          <small>Ventas por mostrador o uso en taller</small>
+        </div>
+
+        <form id="form-salida" class="form-grid">
+          <input type="date" id="sal-fecha" required>
+          <select id="sal-tipo" required>
+            <option value="">Tipo de salida</option>
+            <option value="Mostrador">Venta mostrador</option>
+            <option value="Taller">Uso en taller</option>
+          </select>
+          <input type="text" id="sal-codigo" placeholder="Código repuesto" required>
+          <input type="number" id="sal-cantidad" placeholder="Cantidad" required min="1">
+          <input type="text" id="sal-detalle" placeholder="Detalle (OT, cliente, placa…)">
+          <button type="submit" class="btn-danger">Registrar salida</button>
+        </form>
+
+        <div class="table-wrapper">
+          <table id="tabla-salidas">
+            <thead>
+              <tr>
+                <th>Fecha</th>
+                <th>Tipo</th>
+                <th>Código</th>
+                <th>Cantidad</th>
+                <th>Detalle</th>
+              </tr>
+            </thead>
+            <tbody></tbody>
+          </table>
+        </div>
+      </section>
+    </main>
+
+    <footer class="app-footer">
+      <span>Sistema mínimo · Taller Automotriz "El Dulcecito Castillo"</span>
+    </footer>
+  </div>
+
+  <script src="app.js"></script>
+</body>
+</html>
